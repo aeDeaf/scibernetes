@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubetest1
+  labels:
+    tier: server1
+    app: kubetest
+spec:
+  replicas: 30
+  selector:
+    matchLabels:
+      tier: server1
+  template:
+    metadata:
+      labels:
+        tier: server1
+    spec:
+      containers:
+        - name: kubetest1
+          image: andrey21and/kubetest_server1:latest
+          ports:
+            - containerPort: 5000
+              protocol: TCP
